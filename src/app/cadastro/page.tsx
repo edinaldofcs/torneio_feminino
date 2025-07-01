@@ -105,7 +105,7 @@ export default function CadastroPage() {
 
   return (
     <main className="w-full mx-auto p-6 flex flex-col justify-between gap-10 md:flex-row relative">
-      <div className="absolute inset-0 bg-[url('/logo.jpg')] bg-cover bg-center opacity-5 -z-2" />
+      <div className="absolute inset-0 bg-[url('/logo.jpeg')] bg-cover bg-center opacity-5 -z-2" />
 
       <JogadorLista
         jogadores={jogadores}

@@ -192,7 +192,7 @@ export default function Page() {
   return (
     <>
     <main className="w-full h-full p-6 grid grid-cols-1 md:grid-cols-4 gap-6">
-      <div className="absolute inset-0 bg-[url('/logo.jpg')] bg-cover bg-center opacity-10 -z-2" />
+      <div className="absolute inset-0 bg-[url('/logo.jpeg')] bg-cover bg-center opacity-10 -z-2" />
       <CadastroList cadastrados={cadastrados} selecionados={selecionados} onAdicionar={adicionarSelecionado} />
       <SelecionadosList selecionados={selecionados} onRemover={removerSelecionado} />
       <DuplasList duplas={duplas} />

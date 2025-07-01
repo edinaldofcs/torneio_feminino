@@ -16,7 +16,7 @@ export default function Header() {
     <header className="bg-black text-white p-4 flex items-center justify-between font-sans z-8">
       {/* Imagem à esquerda com margem */}
       <div className="ml-4">
-        <img src="/logo.jpg" alt="Logo" className="h-12 w-auto" />
+        <img src="/logo.jpeg" alt="Logo" className="h-12 w-auto" />
       </div>
 
       {/* Links centralizados */}
