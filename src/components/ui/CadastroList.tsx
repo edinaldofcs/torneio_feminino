@@ -26,7 +26,7 @@ export function CadastroList({ cadastrados, selecionados, onAdicionar }: Cadastr
                 onClick={(e) => onAdicionar(j, e.ctrlKey)}
                 disabled={selecionado}
                 className={`px-2 py-1 rounded text-sm text-white transition ${
-                  selecionado ? "bg-gray-400 cursor-not-allowed" : "bg-blue-500 hover:bg-blue-600"
+                  selecionado ? "bg-gray-400 cursor-not-allowed" : "bg-pink-500 hover:bg-pink-600"
                 }`}
               >
                 {selecionado ? "Adicionado" : "Adicionar"}

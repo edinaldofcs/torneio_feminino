@@ -52,13 +52,13 @@ export default function JogadorLista({
                     type="text"
                     value={editNome}
                     onChange={(e) => setEditNome(e.target.value)}
-                    className="flex-grow border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="flex-grow border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-pink-500"
                     autoFocus
                   />
                   <button
                     onClick={() => saveEdit(j.id)}
                     disabled={loading}
-                    className="bg-green-600 hover:bg-green-700 disabled:bg-green-400 text-white px-3 py-1 rounded-md transition"
+                    className="bg-pink-600 hover:bg-pink-700 disabled:bg-green-400 text-white px-3 py-1 rounded-md transition"
                   >
                     Salvar
                   </button>
@@ -77,7 +77,7 @@ export default function JogadorLista({
                   </span>
                   <button
                     onClick={() => startEdit(j)}
-                    className="bg-blue-600 hover:bg-yellow-600 text-white px-3 py-1 rounded-md transition"
+                    className="bg-pink-500 hover:bg-pink-600 text-white px-3 py-1 rounded-md transition"
                   >
                     Editar
                   </button>

@@ -39,7 +39,7 @@ export default function HistoricoPage() {
   if (loading)
     return (
       <>
-        <div className="absolute inset-0 bg-[url('/logo.jpeg')] bg-cover bg-center opacity-5 -z-2" />
+        <div className="absolute inset-0 bg-[url('/logo.png')] bg-cover bg-center opacity-5 -z-2" />
         <p className="w-full h-full flex items-center justify-center">
           <span>Carregando histórico...</span>
         </p>
@@ -48,7 +48,7 @@ export default function HistoricoPage() {
   if (etapas.length === 0)
     return (
       <>
-        <div className="absolute inset-0 bg-[url('/logo.jpeg')] bg-cover bg-center opacity-5 -z-2" />
+        <div className="absolute inset-0 bg-[url('/logo.png')] bg-cover bg-center opacity-5 -z-2" />
         <p className="w-full h-full flex items-center justify-center">
           <span>Nenhum confronto registrado ainda.</span>
         </p>
@@ -68,7 +68,7 @@ export default function HistoricoPage() {
         onConfirm={confirmarLimpeza}
       />
       <main className="w-full h-screen p-4 shadow flex flex-col justify-start items-center">
-        <div className="absolute inset-0 bg-[url('/logo.jpeg')] bg-cover bg-center opacity-5 -z-2" />
+        <div className="absolute inset-0 bg-[url('/logo.png')] bg-cover bg-center opacity-5 -z-2" />
         <h1 className="text-2xl font-bold text-center">
           Histórico de Confrontos
         </h1>

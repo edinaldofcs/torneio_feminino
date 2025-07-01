@@ -25,12 +25,12 @@ export default function JogadorForm({
           value={nome}
           onChange={(e) => setNome(e.target.value)}
           required
-          className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-pink-500"
         />
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white py-3 rounded-md font-semibold transition"
+          className="bg-pink-500 hover:bg-pink-700 disabled:bg-pink-400 text-white py-3 rounded-md font-semibold transition"
         >
           {loading ? "Cadastrando..." : "Cadastrar"}
         </button>

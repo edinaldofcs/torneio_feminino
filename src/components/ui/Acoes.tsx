@@ -17,13 +17,13 @@ export function Acoes({ etapaAtual, duplasCount, onSortear, onGravar }: AcoesPro
           <p className="text-gray-600 mb-6">Etapa atual: {etapaAtual}</p>
           <button
             onClick={onSortear}
-            className="bg-green-600 hover:bg-green-700 text-white w-full py-2 rounded mb-4"
+            className="bg-pink-600 hover:bg-pink-700 text-white w-full py-2 rounded mb-4"
           >
             Sortear Duplas
           </button>
           <button
             onClick={onGravar}
-            className="bg-indigo-600 hover:bg-indigo-700 text-white w-full py-2 rounded"
+            className="bg-purple-600 hover:bg-purple-700 text-white w-full py-2 rounded"
             disabled={duplasCount === 0}
           >
             Gravar Histórico

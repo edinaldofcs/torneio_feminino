@@ -13,14 +13,14 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-black text-white p-4 flex items-center justify-between font-sans z-8">
+    <header className="bg-pink-50 border-b-2 border-pink-400 text-black p-4 flex items-center justify-between font-sans z-8">
       {/* Imagem à esquerda com margem */}
       <div className="ml-4">
-        <img src="/logo.jpeg" alt="Logo" className="h-12 w-auto" />
+        <img src="/logo.png" alt="Logo" className="h-12 w-auto" />
       </div>
 
       {/* Links centralizados */}
-      <nav className="flex space-x-8 justify-center flex-1">
+      <nav className="flex space-x-8 justify-center flex-1 text-pink-500">
         {links.map(({ label, href }) => (
           <Link
             key={href}
