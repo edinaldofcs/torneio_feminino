@@ -52,7 +52,7 @@ export default function JogadorLista({
                     type="text"
                     value={editNome}
                     onChange={(e) => setEditNome(e.target.value)}
-                    className="flex-grow border border-gray-300 rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                    className="flex-grow border border-gray-300 text-black rounded-md px-3 py-1 focus:outline-none focus:ring-2 focus:ring-pink-500"
                     autoFocus
                   />
                   <button
