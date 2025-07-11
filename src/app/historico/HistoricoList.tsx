@@ -2,6 +2,7 @@ import { Historico } from "@/lib/useHistorico";
 
 interface Props {
   confrontos: Historico[];
+  
 }
 
 export default function HistoricoList({ confrontos }: Props) {

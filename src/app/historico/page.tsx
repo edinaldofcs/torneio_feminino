@@ -36,6 +36,8 @@ export default function HistoricoPage() {
 };
 
 
+
+
   // Função chamada quando usuário confirma no modal
   const onConfirm = async () => {
     setConfirmOpen(false);
