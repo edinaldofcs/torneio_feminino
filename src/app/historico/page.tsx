@@ -20,35 +20,95 @@ export default function HistoricoPage() {
     setEtapas,
   } = useHistorico();
 
+  // Estado para controlar o modal de confirmação e mensagem
   const [confirmOpen, setConfirmOpen] = useState(false);
+  const [message, setMessage] = useState("");
 
-  const limparHistorico = async () => {
-    setConfirmOpen(true);
+  // Estado para guardar a ação a ser executada após confirmação
+  const [acaoConfirmada, setAcaoConfirmada] = useState<(() => Promise<void>) | null>(null);
+
+
+  // Função genérica para abrir o modal, definindo mensagem e ação
+  const abrirConfirmacao = (msg: string, acao: () => Promise<void>) => {
+  setMessage(msg);
+  setAcaoConfirmada(() => acao);
+  setConfirmOpen(true);
+};
+
+
+  // Função chamada quando usuário confirma no modal
+  const onConfirm = async () => {
+    setConfirmOpen(false);
+    if (acaoConfirmada) {
+      await acaoConfirmada();
+      setAcaoConfirmada(null);
+    }
   };
 
-  const confirmarLimpeza = async () => {
-    setConfirmOpen(false);
-    const { error } = await supabase.from("historico_feminino").delete().neq("id", 0);
-    if (error) return console.error("Erro ao limpar:", error.message);
+  // Limpar todo o histórico
+  const limparHistorico = () => {
+    abrirConfirmacao(
+      "Tem certeza que deseja limpar todo o histórico? Essa ação não poderá ser desfeita.",
+      async () => {
+        const { error } = await supabase.from("historico_feminino").delete().neq("id", 0);
+        if (error) {
+          console.error("Erro ao limpar:", error.message);
+          return;
+        }
 
-    setHistorico([]);
-    setEtapas([]);
-    setEtapaAtualIndex(0);
+        setHistorico([]);
+        setEtapas([]);
+        setEtapaAtualIndex(0);
+      }
+    );
+  };
+
+  // Deletar confrontos da última etapa
+  const deletarUltimoHistorico = () => {
+    if (historico.length === 0) return;
+
+    const ultimaEtapa = Math.max(...historico.map((h) => Number(h.etapa)));
+
+    abrirConfirmacao(
+      "Tem certeza que deseja deletar todos os confrontos da última etapa? Essa ação não poderá ser desfeita.",
+      async () => {
+        const { error } = await supabase
+          .from("historico_feminino")
+          .delete()
+          .eq("etapa", ultimaEtapa);
+
+        if (error) {
+          console.error("Erro ao deletar último histórico:", error.message);
+          return;
+        }
+
+        const novoHistorico = historico.filter((h) => h.etapa !== ultimaEtapa);
+        setHistorico(novoHistorico);
+
+        const novasEtapas = [...new Set(novoHistorico.map((h) => h.etapa))];
+        setEtapas(novasEtapas);
+
+        if (etapaAtualIndex >= novasEtapas.length) {
+          setEtapaAtualIndex(Math.max(novasEtapas.length - 1, 0));
+        }
+      }
+    );
   };
 
   if (loading)
     return (
       <>
-        <div className="absolute inset-0 bg-[url('/logo.png')] bg-cover bg-center opacity-5 -z-2" />
+        <div className="absolute inset-0 bg-[url('/logo.jpg')] bg-cover bg-center opacity-5 -z-2" />
         <p className="w-full h-full flex items-center justify-center">
           <span>Carregando histórico...</span>
         </p>
       </>
     );
+
   if (etapas.length === 0)
     return (
       <>
-        <div className="absolute inset-0 bg-[url('/logo.png')] bg-cover bg-center opacity-5 -z-2" />
+        <div className="absolute inset-0 bg-[url('/logo.jpg')] bg-cover bg-center opacity-5 -z-2" />
         <p className="w-full h-full flex items-center justify-center">
           <span>Nenhum confronto registrado ainda.</span>
         </p>
@@ -65,7 +125,7 @@ export default function HistoricoPage() {
         title="Limpar Histórico"
         message="Tem certeza que deseja limpar todo o histórico? Essa ação não poderá ser desfeita."
         onCancel={() => setConfirmOpen(false)}
-        onConfirm={confirmarLimpeza}
+        onConfirm={onConfirm}
       />
       <main className="w-full h-screen p-4 shadow flex flex-col justify-start items-center">
         <div className="absolute inset-0 bg-[url('/logo.png')] bg-cover bg-center opacity-5 -z-2" />
@@ -76,6 +136,7 @@ export default function HistoricoPage() {
         <HistoricoActions
           onExport={() => downloadCSV(gerarCSV(historico))}
           onClear={limparHistorico}
+          onDeleteLast={deletarUltimoHistorico}
         />
 
         <EtapaNavegacao
